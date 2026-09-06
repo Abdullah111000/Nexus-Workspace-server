@@ -2,6 +2,7 @@ import { Router } from 'express';
 import multer from 'multer';
 import path from 'path';
 import fs from 'fs';
+import os from 'os';
 import { fileURLToPath } from 'url';
 import { Task } from '../models/Task.js';
 import { Comment } from '../models/Comment.js';
@@ -12,7 +13,9 @@ import { loadWorkspace, requireRole } from '../middleware/permissions.js';
 import { logActivity, notify } from '../utils/activity.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const uploadDir = path.join(__dirname, '../../uploads');
+const uploadDir = process.env.VERCEL
+  ? path.join(os.tmpdir(), 'uploads')
+  : path.join(__dirname, '../../uploads');
 fs.mkdirSync(uploadDir, { recursive: true });
 
 const upload = multer({
