@@ -11,6 +11,11 @@ export const connectDb = async (uri) => {
   try {
     const conn = await mongoose.connect(mongoUri);
     console.log(`Database connected successfully: ${conn.connection.host}`);
+    const workspaceIndexes = await conn.connection.db.collection('workspaces').indexes();
+    if (workspaceIndexes.some((index) => index.name === 'id_1')) {
+      await conn.connection.db.collection('workspaces').dropIndex('id_1');
+      console.log('Removed obsolete workspaces.id index');
+    }
     return conn;
   } catch (error) {
     console.error('Database connection failed:', error.message);
@@ -18,4 +23,4 @@ export const connectDb = async (uri) => {
   }
 };
 
-export const connectDB = connectDb;
+export const connectDB = connectDb;
