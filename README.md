@@ -62,7 +62,6 @@ src/
 ├── middleware/
 ├── models/
 ├── routes/
-├── sockets/
 ├── utils/
 ├── app.js
 ├── index.js
