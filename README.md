@@ -126,6 +126,12 @@ All demo accounts use the password `password123`.
 | `member@demo.com` | Member |
 | `viewer@demo.com` | Viewer |
 
+## Shortcuts
+
+- `⌘/Ctrl + K` command palette
+- `⌘/Ctrl + Enter` new task (on a project)
+- `1` / `2` / `3` board / list / calendar
+
 ## Deployment
 
 The backend is deployed on Vercel. Configure `MONGODB_URI`, `JWT_SECRET` and `CLIENT_ORIGIN` in the Vercel project environment variables.
